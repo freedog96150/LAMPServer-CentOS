@@ -5,7 +5,7 @@ set -o xtrace
 # Install MySQL
 function installMySQL
 {
-yum install mysql mysql-server
+yum -y install mysql mysql-server
 /etc/init.d/mysql start
 chkconfig --levels 35 mysqld on
 # replace newpass by your password
@@ -14,7 +14,7 @@ mysqladmin -u root password newpass
 
 function installHTTPD
 {
-yum install httpd
+yum -y install httpd
 /etc/init.d/httpd start
 chkconfig --levels 35 httpd on
 # Now browse IP of server to see test page
@@ -27,9 +27,9 @@ chkconfig --levels 35 httpd on
 function installPHP
 {
 #install PHP packages
-yum install php
+yum -y install php
 # install php-mysql package
-yum install php-mysql
+yum -y install php-mysql
 #restart httpd
 /etc/init.d/httpd start
 }
