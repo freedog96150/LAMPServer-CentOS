@@ -6,10 +6,11 @@ set -o xtrace
 function installMySQL
 {
 yum -y install mysql mysql-server
-/etc/init.d/mysql start
+/etc/init.d/mysqld start
 chkconfig --levels 35 mysqld on
 # replace newpass by your password
-mysqladmin -u root password newpass
+/usr/bin/mysqladmin -u root -h `hostname` password 'newpass'
+/usr/bin/mysqladmin -u root -h localhost password 'newpass'
 }
 
 function installHTTPD
@@ -54,4 +55,5 @@ installPHP
 configureFirewall
 
 # Now go ahead and configure virtualhosts
+# Test php with: php -r "phpinfo();"
 
